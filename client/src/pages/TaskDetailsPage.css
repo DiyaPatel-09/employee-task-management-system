@@ -1,0 +1,152 @@
+.task-details-page{
+padding:30px;
+background:#eef4ff;
+min-height:100vh;
+flex:1;
+}
+
+.admin-layout{
+display:flex;
+}
+
+.page-breadcrumb{
+font-size:14px;
+color:#8f97a8;
+margin-bottom:12px;
+}
+
+.task-page-title{
+font-size:28px;
+font-weight:700;
+margin:0;
+}
+
+.task-page-subtitle{
+font-size:14px;
+color:#7d8699;
+margin-top:8px;
+margin-bottom:25px;
+}
+
+.task-top-section{
+display:grid;
+grid-template-columns:2.2fr 1fr;
+gap:24px;
+margin-bottom:24px;
+}
+
+.details-card,
+.flow-card,
+.comments-card{
+background:white;
+padding:28px;
+border-radius:24px;
+}
+
+.details-card h3,
+.flow-card h3{
+font-size:14px;
+color:#98a1b5;
+margin-bottom:18px;
+}
+
+.task-stats{
+display:flex;
+justify-content:space-between;
+margin:30px 0;
+max-width:600px;
+}
+
+.task-stats p{
+font-size:14px;
+color:#7d8699;
+margin-bottom:6px;
+}
+
+.task-stats h4{
+font-size:16px;
+margin:0;
+}
+
+.flow-card p{
+display:flex;
+gap:12px;
+margin-bottom:22px;
+color:#556070;
+}
+
+.flow-card p::before{
+content:attr(data-step);
+width:28px;
+height:28px;
+border-radius:50%;
+background:#eef2ff;
+color:#5a54f5;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:14px;
+}
+
+
+.task-header{
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
+margin-bottom:18px;
+}
+
+.status-badge{
+padding:10px 25px;
+border-radius:20px;
+font-size:17px;
+font-weight:600;
+}
+
+
+.comments-card{
+    width: 67%;
+}
+.comment-actions{
+display:flex;
+flex-direction:column;
+align-items:flex-start;
+gap:14px;
+margin-top:12px;
+}
+
+.comment-actions button{
+margin-top:0;
+padding:10px 22px;
+}
+
+.comment-list{
+width:96%;
+margin-top:12px;
+background:#eef3ff;
+padding:14px;
+border-radius:12px;
+max-height:250px;
+overflow-y:auto;
+}
+
+.comment-item{
+background:none;
+padding:0px 0;
+border-bottom:1px solid #ddd;
+border-radius:0;
+}
+
+.comment-item:last-child{
+border-bottom:none;
+}
+
+.comment-meta{
+font-size:13px;
+color:#777;
+margin-bottom:4px;
+}
+
+.comment-text{
+margin:0;
+}

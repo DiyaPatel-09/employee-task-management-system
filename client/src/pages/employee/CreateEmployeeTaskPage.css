@@ -1,0 +1,72 @@
+.create-breadcrumb{
+font-size:14px;
+color:#7a849c;
+margin-bottom:12px;
+}
+
+.create-heading{
+font-size:48px;
+font-weight:700;
+margin-bottom:8px;
+}
+
+.create-subtitle{
+color:#667085;
+margin-bottom:28px;
+}
+
+.create-card{
+background:white;
+padding:28px;
+border-radius:24px;
+display:flex;
+flex-direction:column;
+gap:18px;
+max-width:900px;
+}
+
+.create-card input,
+.create-card select,
+.create-card textarea{
+padding:14px;
+border:1px solid #ddd;
+border-radius:12px;
+width:100%;
+}
+
+.field-group{
+display:flex;
+flex-direction:column;
+gap:px;
+width: 96%;
+}
+
+.double-row{
+display:grid;
+grid-template-columns:1fr 1fr;
+}
+
+.triple-row{
+display:grid;
+grid-template-columns:1fr 1fr 1fr;
+gap:24px;
+padding-right: 35px;
+}
+
+.btn-row{
+display:flex;
+gap:12px;
+margin-top:16px;
+}
+
+.btn-row button{
+padding:12px 22px;
+border:none;
+border-radius:12px;
+cursor:pointer;
+}
+
+.create-btn{
+background:#5a54f5;
+color:white;
+}

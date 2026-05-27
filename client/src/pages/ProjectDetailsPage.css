@@ -1,0 +1,149 @@
+.project-page{
+padding:20px;
+width:100%;
+}
+
+.project-header{
+background:white;
+padding:25px;
+border-radius:12px;
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
+margin-bottom:20px;
+}
+
+.task-heading{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+.project-status{
+margin-top:20px;
+}
+
+.project-status{
+display:inline-block;
+background:#dbeafe;
+color:#2563eb;
+padding:6px 14px;
+border-radius:20px;
+margin-top:10px;
+font-size:14px;
+font-weight:600;
+}
+
+.description-card{
+background:white;
+padding:25px;
+border-radius:12px;
+margin-top:20px;
+margin-bottom:20px;
+}
+.project-actions{
+display:flex;
+gap:12px;
+}
+
+.project-actions button{
+padding:12px 20px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+background:white;
+}
+
+.project-actions button:first-child{
+background:#5b4df7;
+color:white;
+}
+
+.tasks-card{
+background:white;
+padding:20px;
+border-radius:12px;
+margin-top:20px;
+}
+
+.project-actions{
+display:flex;
+gap:10px;
+}
+
+.project-actions button{
+padding:10px 18px;
+border:1px solid #fef9f9;
+background:rgb(244, 239, 239);
+border-radius:8px;
+cursor:pointer;
+font-weight:500;
+}
+.project-actions button:first-child{
+background:#5b4df7;
+color:white;
+border:none;
+}
+.tasks-table{
+width:100%;
+background:white;
+border-radius:12px;
+}
+
+.project-tasks-table{
+width:100%;
+background:white;
+border-radius:12px;
+overflow:hidden;
+border-collapse:collapse;
+}
+
+.project-tasks-table th{
+background:#f5f7fb;
+padding:14px;
+text-align:left;
+}
+
+.project-tasks-table td{
+padding:14px;
+border-bottom:1px solid #eee;
+}
+
+.project-tasks-table tr:hover{
+background:#fafafa;
+}
+
+.task-heading{
+display:flex;
+justify-content:space-between;
+margin-bottom:20px;
+}
+
+.status-pill{
+background:#e5e7eb;
+padding:6px 14px;
+border-radius:20px;
+}
+
+.edit-project-page{
+padding:30px;
+}
+
+.edit-form{
+background:white;
+padding:25px;
+border-radius:12px;
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.edit-form input,
+.edit-form textarea,
+.edit-form select{
+padding:12px;
+border:1px solid #ddd;
+border-radius:8px;
+
+}
