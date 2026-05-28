@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { getProjects } from "../../services/projectService";
 import { getTasks } from "../../services/taskService";
 import { getEmployees } from "../../services/userService";
+import {FaFolder,FaTasks,FaCheckCircle,FaUsers} from "react-icons/fa";
+
 
 function DashboardSection({
 
@@ -83,9 +85,9 @@ function DashboardSection({
 
                 <div className="stat-card">
 
-                    <p>Total projects</p>
+                    <p> Total projects</p>
 
-                    <h2>{projects.length}</h2>
+                    <h2>📁 {projects.length}</h2>
 
                 </div>
 
@@ -93,7 +95,7 @@ function DashboardSection({
 
                     <p>Total tasks</p>
 
-                    <h2>{tasks.length}</h2>
+                    <h2>📋 {tasks.length}</h2>
 
                 </div>
 
@@ -101,7 +103,7 @@ function DashboardSection({
 
                     <p>Completed this month</p>
 
-                    <h2>{tasks.filter(t => t.status === "Completed").length}</h2>
+                    <h2>✔ {tasks.filter(t => t.status === "Completed").length}</h2>
 
                 </div>
 
@@ -109,7 +111,7 @@ function DashboardSection({
 
                     <p>Active developers</p>
 
-                    <h2>{employees.length}</h2>
+                    <h2>👥 {employees.length}</h2>
 
                 </div>
 
@@ -136,7 +138,7 @@ function DashboardSection({
 
                     >
 
-                        New project
+                        + New project
 
                     </button>
 
@@ -144,7 +146,8 @@ function DashboardSection({
 
                         onClick={() => setActiveSection("assign")}
                     >
-                        New task
+                        
+                    📝 New task
                     </button>
 
                     <button
@@ -159,7 +162,7 @@ function DashboardSection({
 
                     >
 
-                        View Reports
+                      📊 View Reports
 
                     </button>
 

@@ -139,7 +139,7 @@ function EmployeeTaskDetailsPage() {
 
                 due_date:
 
-                    task.due_date,
+                    task.due_date?.split("T")[0],
 
                 project_id:
 
@@ -566,7 +566,7 @@ function EmployeeTaskDetailsPage() {
 
                         <h2>
 
-                            Comments
+                           💬 Comments
 
                         </h2>
 

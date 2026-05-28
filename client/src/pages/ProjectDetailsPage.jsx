@@ -7,6 +7,7 @@ import { useLocation } from "react-router-dom";
 import ProjectsSection from "../components/sections/ProjectsSection";
 import "./ProjectDetailsPage.css";
 
+
 function ProjectDetailsPage() {
 
     const { id } = useParams();
@@ -137,29 +138,21 @@ function ProjectDetailsPage() {
 
                     <div className="project-actions">
 
-                        <button
+                   <button
 
-                            onClick={() => {
+onClick={() => {
 
-                                localStorage.setItem(
+window.location.href =
 
-                                    "activeSection",
+`/admin?section=assign&projectId=${project.id}`;
 
-                                    "assign"
+}}
 
-                                );
+>
 
-                                window.location.href =
++ Add Task
 
-                                    "/admin";
-
-                            }}
-
-                        >
-
-                            Add Task
-
-                        </button>
+</button>
 
                         <button
 

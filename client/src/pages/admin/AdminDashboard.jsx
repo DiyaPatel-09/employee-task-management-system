@@ -21,13 +21,30 @@ import AdminProfileSection from '../../components/sections/ProfileSection';
 
 
 function AdminDashboard() {
+    const params =
 
+        new URLSearchParams(
+
+            window.location.search
+
+        );
+
+    const prefilledSection =
+
+        params.get(
+            "section"
+        );
+
+    const prefilledProjectId =
+
+        params.get(
+            "projectId"
+        );
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [employeeId, setEmployeeId] = useState("");
     const [priority, setPriority] = useState("");
     const [dueDate, setDueDate] = useState("");
-    const [activeSection, setActiveSection] = useState(localStorage.getItem("section") || "dashboard");
     const [tasks, setTasks] = useState([]);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -42,7 +59,8 @@ function AdminDashboard() {
     const [projectName, setProjectName] = useState("");
     const [projectDescription, setProjectDescription] = useState("");
     const [projectStatus, setProjectStatus] = useState("Ongoing");
-    const [projectId, setProjectId] = useState("");
+    const [activeSection, setActiveSection] = useState(prefilledSection || localStorage.getItem("section") || "dashboard");
+    const [projectId, setProjectId] = useState(prefilledProjectId || "");
     const [status, setStatus] = useState("Pending");
     const [estimatedHours, setEstimatedHours] = useState("");
     const [attachment, setAttachment] = useState(null);
@@ -204,19 +222,16 @@ function AdminDashboard() {
                 await updateTask(
 
                     editingTaskId,
-
                     {
-
                         title,
                         description,
-                        employeeId,
-                        projectId,
+                        employee_id: employeeId,
+                        project_id: projectId,
                         status,
                         priority,
-                        estimatedHours,
-                        dueDate,
+                        estimated_hours: estimatedHours,
+                        due_date: dueDate,
                         attachment
-
                     },
 
                     token
@@ -232,25 +247,20 @@ function AdminDashboard() {
             }
 
             else {
-
                 await assignTask(
 
                     {
-
                         title,
                         description,
-                        employeeId,
-                        projectId,
+                        employee_id: employeeId,
+                        project_id: projectId,
                         status,
                         priority,
-                        estimatedHours,
-                        dueDate,
+                        estimated_hours: estimatedHours,
+                        due_date: dueDate,
                         attachment
-
                     },
-
                     token
-
                 );
 
             }

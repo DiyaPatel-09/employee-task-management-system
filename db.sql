@@ -97,6 +97,8 @@ ADD COLUMN is_deleted
 BOOLEAN
 DEFAULT FALSE;
 
+
+
 SELECT * FROM users;
 SELECT * FROM tasks;
 SELECT * FROM task_updates;

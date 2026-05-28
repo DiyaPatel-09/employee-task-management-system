@@ -421,19 +421,19 @@ title,
 
 description,
 
-employeeId,
+employee_id,
 
-projectId,
+project_id,
 
 priority,
 
 status,
 
-estimatedHours,
+estimated_hours,
 
-actualHours,
+actual_hours,
 
-dueDate,
+due_date,
 
 attachment
 
@@ -479,19 +479,19 @@ title,
 
 description,
 
-employeeId,
+employee_id,
 
-projectId,
+project_id,
 
 priority,
 
 status,
 
-estimatedHours,
+estimated_hours,
 
-actualHours,
+actual_hours,
 
-dueDate,
+due_date,
 
 attachment,
 

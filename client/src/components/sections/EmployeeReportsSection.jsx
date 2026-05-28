@@ -338,7 +338,7 @@ function EmployeeReportsSection() {
 
                     >
 
-                        Today summary copy
+                      📋 Today's summary copy
 
                     </button>
 
@@ -497,7 +497,7 @@ function EmployeeReportsSection() {
 
                     >
 
-                        Export PDF
+                       📄 Export PDF
 
                     </button>
 
@@ -507,7 +507,7 @@ function EmployeeReportsSection() {
 
                     >
 
-                        Export Excel
+                        📊 Export Excel
 
                     </button>
 

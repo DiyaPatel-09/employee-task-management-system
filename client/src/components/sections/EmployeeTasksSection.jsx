@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import {FaPlus,FaChartBar} from "react-icons/fa";
+
 
 function EmployeeTasksSection() {
 
@@ -112,7 +114,7 @@ function EmployeeTasksSection() {
 
                 >
 
-                    Add new task
+                   + Add new task
 
                 </button>
 
@@ -203,6 +205,11 @@ function EmployeeTasksSection() {
                             <option>
 
                                 Completed
+
+                            </option>
+                            <option>
+
+                                On Hold
 
                             </option>
 

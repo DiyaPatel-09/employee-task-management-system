@@ -73,7 +73,7 @@ function EmployeeHomeSection() {
 
                     <h2>
 
-                        {tasks.length}
+                      📋  {tasks.length}
 
                     </h2>
 
@@ -83,13 +83,13 @@ function EmployeeHomeSection() {
 
                     <p>
 
-                        Completed
+                       Completed
 
                     </p>
 
                     <h2>
 
-                        {
+                        ✔ {
 
                             tasks.filter(
 
@@ -115,7 +115,7 @@ function EmployeeHomeSection() {
 
                     <h2>
 
-                        {
+                       ⏳ {
 
                             tasks.filter(
 

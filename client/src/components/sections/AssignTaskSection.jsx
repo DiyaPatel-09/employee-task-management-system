@@ -288,30 +288,56 @@ function AssignTaskSection({
 
                 </button>
 
-                {isTaskEditing && (
-                    <button
-                        type="button"
-                        className="cancel-btn"
-                        onClick={() => {
+                {<button
+                    type="button"
+                    className="cancel-btn"
+                    onClick={() => {
+
+                        setTitle("");
+
+                        setDescription("");
+
+                        setPriority("");
+
+                        setStatus("Pending");
+
+                        setEmployeeId("");
+
+                        setProjectId("");
+
+                        setEstimatedHours("");
+
+                        setAttachment("");
+
+                        setDueDate("");
+
+                        if (isTaskEditing) {
+
                             setIsTaskEditing(false);
+
                             setEditingTaskId(null);
-                            setTitle("");
-                            setDescription("");
-                            setPriority("");
-                            setStatus("Pending");
-                            setEmployeeId("");
-                            setProjectId("");
-                            setEstimatedHours("");
-                            setAttachment("");
-                            setDueDate("");
-                            localStorage.setItem("activeSection", "tasks");
-                            setActiveSection("tasks");
-                            window.location.reload();
-                        }}
-                    >
-                        Cancel
-                    </button>
-                )}
+
+                        }
+
+                        localStorage.setItem(
+
+                            "section",
+
+                            "tasks"
+
+                        );
+
+                        window.location.href =
+
+                            "/admin";
+
+                    }}
+                >
+
+                    Cancel
+
+                </button>
+                }
 
             </form>
 

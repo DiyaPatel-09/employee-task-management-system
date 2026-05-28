@@ -258,7 +258,7 @@ function TaskDetailsPage() {
 
                     <h2>
 
-                        Comments
+                        💬 Comments
 
                     </h2>
 

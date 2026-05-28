@@ -188,6 +188,28 @@ function CreateEmployeeSection({
 
                 </button>
 
+                <button
+
+                    type="button"
+
+                    className="cancel-btn"
+
+                    onClick={() => {
+                        setName("");
+                        setEmail("");
+                        setPassword("");
+                        setRole("employee");
+                        localStorage.setItem( "section", "employee" );
+                        window.location.href = "/admin";
+
+                    }}
+
+                >
+
+                    Cancel
+
+                </button>
+
             </div>
 
         </div>

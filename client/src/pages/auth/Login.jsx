@@ -19,8 +19,8 @@ function Login() {
 
       const response = await axios.post(
 
-        'http://localhost:5000/api/users/login', 
-        { 
+        'http://localhost:5000/api/users/login',
+        {
           email,
           password,
         }
@@ -39,7 +39,19 @@ function Login() {
         JSON.stringify(response.data.user)
       );
 
-      if (response.data.user.role === 'admin') {
+      if (
+
+        response.data.user.role === 'admin'
+
+      ) {
+
+        localStorage.setItem(
+
+          "section",
+
+          "dashboard"
+
+        );
 
         navigate('/admin');
 
@@ -57,60 +69,60 @@ function Login() {
 
   };
 
-return (
+  return (
 
-  <div className="login-page">
+    <div className="login-page">
 
-    <div className="login-box">
+      <div className="login-box">
 
-      <h1 className="login-title">
-        Welcome Back
-      </h1>
+        <h1 className="login-title">
+          Welcome Back
+        </h1>
 
-      <p className="login-subtitle">
-        Login to continue
-      </p>
+        <p className="login-subtitle">
+          Login to continue
+        </p>
 
-      <form onSubmit={handleLogin}>
+        <form onSubmit={handleLogin}>
 
-        <div className="input-group">
+          <div className="input-group">
 
-          <label>Email</label>
+            <label>Email</label>
 
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
 
-        </div>
+          </div>
 
-        <div className="input-group">
+          <div className="input-group">
 
-          <label>Password</label>
+            <label>Password</label>
 
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
 
-        </div>
+          </div>
 
-        <button
-          type="submit"
-          className="login-btn"
-        >
-          Login
-        </button>
+          <button
+            type="submit"
+            className="login-btn"
+          >
+            Login
+          </button>
 
-      </form>
+        </form>
+
+      </div>
 
     </div>
 
-  </div>
-
-);
+  );
 
 }
 

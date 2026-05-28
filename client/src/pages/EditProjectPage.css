@@ -51,7 +51,7 @@ rgba(0,0,0,.08);
 }
 
 .edit-project-card{
-width:100%;
+width:60%;
 max-width:1100px;
 background:white;
 padding:34px;
@@ -76,7 +76,7 @@ margin-bottom:10px;
 .form-group input,
 .form-group textarea,
 .form-group select{
-width:100%;
+width:97%;
 padding:16px;
 border:1px solid #e5e7eb;
 border-radius:14px;

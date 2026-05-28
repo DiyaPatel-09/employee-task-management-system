@@ -57,7 +57,7 @@ function EditProjectPage() {
                 setActiveSection={(section) => {
 
                     localStorage.setItem(
-                        "activeSection",
+                        "section",
                         section
                     );
 
@@ -153,7 +153,23 @@ function EditProjectPage() {
                         </button>
 
                         <button
-                            onClick={() => { handleCreateProject }}
+
+                            onClick={() => {
+
+                                localStorage.setItem(
+
+                                    "section",
+
+                                    "projects"
+
+                                );
+
+                                window.location.href =
+
+                                    "/admin";
+
+                            }}
+
                         >
 
                             Cancel
