@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 
 const pool = require('../config/db');
 
+const { createActivityLog } = require("./activityLogController");
 
 // =========================
 // REGISTER USER
@@ -78,18 +79,18 @@ const loginUser = async (req, res) => {
       });
 
     }
-    
+
 
     const user = result.rows[0];
-    if(user.is_blocked){
+    if (user.is_blocked) {
 
-    return res.status(403).json({
+      return res.status(403).json({
 
         message: "Your account has been blocked"
 
-    });
+      });
 
-}
+    }
 
     const isMatch = await bcrypt.compare(
       password,
@@ -118,7 +119,21 @@ const loginUser = async (req, res) => {
       }
 
     );
+    await createActivityLog(
 
+      user.id,
+
+      user.name,
+
+      user.role,
+
+      "Authentication",
+
+      "Login",
+
+      `${user.name} logged into the system`
+
+    );
     res.status(200).json({
 
       message: 'Login successful',
@@ -228,123 +243,123 @@ const updateEmployee = async (req, res) => {
 
 const blockEmployee = async (req, res) => {
 
-    try {
+  try {
 
-        const { id } = req.params;
+    const { id } = req.params;
 
-        await pool.query(
+    await pool.query(
 
-            `
+      `
             UPDATE users
             SET is_blocked = NOT is_blocked
             WHERE id=$1
             `,
-            [id]
+      [id]
 
-        );
+    );
 
-        res.json({
+    res.json({
 
-            success: true
+      success: true
 
-        });
+    });
 
-    }
+  }
 
-    catch (err) {
+  catch (err) {
 
-        res.status(500).json({
+    res.status(500).json({
 
-            error: err.message
+      error: err.message
 
-        });
+    });
 
-    }
+  }
 
 };
 
 
 const checkUser = async (req, res) => {
 
-    try {
+  try {
 
-        const result = await pool.query(
+    const result = await pool.query(
 
-            `
+      `
             SELECT * FROM users
             WHERE id=$1
             `,
-            [req.user.id]
+      [req.user.id]
 
-        );
+    );
 
-        const user = result.rows[0];
+    const user = result.rows[0];
 
-        if(user.is_blocked){
+    if (user.is_blocked) {
 
-            return res.status(403).json({
+      return res.status(403).json({
 
-                message: "Blocked"
+        message: "Blocked"
 
-            });
-
-        }
-
-        res.json({
-
-            success: true
-
-        });
+      });
 
     }
 
-    catch(err){
+    res.json({
 
-        res.status(500).json({
+      success: true
 
-            error: err.message
+    });
 
-        });
+  }
 
-    }
+  catch (err) {
+
+    res.status(500).json({
+
+      error: err.message
+
+    });
+
+  }
 
 };
 
 
 const deleteEmployee = async (req, res) => {
 
-    try {
+  try {
 
-        const { id } = req.params;
+    const { id } = req.params;
 
-        await pool.query(
+    await pool.query(
 
-            `
+      `
             UPDATE users
             SET is_deleted = TRUE
             WHERE id=$1
             `,
-            [id]
+      [id]
 
-        );
+    );
 
-        res.json({
+    res.json({
 
-            success: true
+      success: true
 
-        });
+    });
 
-    }
+  }
 
-    catch(err){
+  catch (err) {
 
-        res.status(500).json({
+    res.status(500).json({
 
-            error: err.message
+      error: err.message
 
-        });
+    });
 
-    }
+  }
 
 };
 

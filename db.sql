@@ -97,10 +97,16 @@ DEFAULT FALSE;
 
 
 SELECT * FROM users;
+
 SELECT * FROM tasks;
+
 SELECT * FROM task_updates;
+
 SELECT * FROM projects;
+
 SELECT * FROM project_members;
+
 SELECT * FROM comments;
+
 SELECT * FROM leaves;
 

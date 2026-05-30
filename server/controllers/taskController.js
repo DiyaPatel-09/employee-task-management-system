@@ -1,5 +1,6 @@
 const pool = require('../config/db');
 const bcrypt = require("bcryptjs");
+const { createActivityLog } = require("./activityLogController");
 
 // =========================
 // ASSIGN TASK
@@ -55,6 +56,21 @@ const assignTask = async (req, res) => {
 
     );
 
+    await createActivityLog(
+
+      req.user.id,
+
+      req.user.name,
+
+      req.user.role,
+
+      "Task Management",
+
+      "Created",
+
+      `Created task: ${title}`
+
+    );
     res.status(201).json({
 
       message: 'Task assigned successfully',
@@ -134,7 +150,7 @@ const getMyTasks = async (req, res) => {
 
         FROM tasks
         LEFT JOIN projects ON tasks.project_id=projects.id
-        WHERE tasks.employee_id=$1`,
+        WHERE tasks.employee_id=$1 AND is_archived = false`,
 
       [employeeId]
 
@@ -197,7 +213,21 @@ const updateTaskStatus = async (req, res) => {
       [taskId, updatedBy, status]
 
     );
+    await createActivityLog(
 
+      req.user.id,
+
+      req.user.name,
+
+      req.user.role,
+
+      "Task Management",
+
+      "Status Changed",
+
+      `Changed task #${taskId} status to ${status}`
+
+    );
 
     res.status(200).json({
 
@@ -627,7 +657,21 @@ const archiveTask = async (req, res) => {
       [id]
 
     );
+    await createActivityLog(
 
+      req.user.id,
+
+      req.user.name,
+
+      req.user.role,
+
+      "Task Management",
+
+      "Deleted",
+
+      `Archived task #${id}`
+
+    );
     res.json({ message: "Archived" });
 
   }

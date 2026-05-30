@@ -69,6 +69,45 @@ const updateLeaveStatus = async (req, res) => {
             ]
 
         );
+        if (status === "Approved") {
+
+            await createActivityLog(
+
+                req.user.id,
+
+                req.user.name,
+
+                req.user.role,
+
+                "Leave Management",
+
+                "Approved",
+
+                `Approved leave request #${id}`
+
+            );
+
+        }
+
+        if (status === "Rejected") {
+
+            await createActivityLog(
+
+                req.user.id,
+
+                req.user.name,
+
+                req.user.role,
+
+                "Leave Management",
+
+                "Rejected",
+
+                `Rejected leave request #${id}`
+
+            );
+
+        }
 
         res.json(result.rows[0]);
 
@@ -106,25 +145,26 @@ const applyLeave = async (req, res) => {
         } = req.body;
         if (
 
-    !leave_type ||
+            !leave_type ||
 
-    !from_date ||
+            !from_date ||
 
-    !to_date ||
+            !to_date ||
 
-    !reason
+            !reason
 
-) {
+        ) {
 
-    return res.status(400).json({
 
-        message:
+            return res.status(400).json({
 
-            "All fields are required"
+                message:
 
-    });
+                    "All fields are required"
 
-}
+            });
+
+        }
 
         const employee_id = req.user.id;
 
@@ -186,6 +226,15 @@ const applyLeave = async (req, res) => {
 
             ]
 
+        );
+
+        await createActivityLog(
+            req.user.id,
+            req.user.name,
+            req.user.role,
+            "Leave Management",
+            "Submitted",
+            `${req.user.name} applied for ${leave_type} leave`
         );
 
         res.status(201).json(
@@ -284,6 +333,20 @@ const cancelLeave = async (req, res) => {
                 req.user.id
 
             ]
+
+        );
+        await createActivityLog(
+
+            req.user.id,
+
+            req.user.name,
+
+            req.user.role,
+
+            "Leave Management",
+
+            "Cancelled",
+            `${req.user.name} cancelled leave request #${req.params.id}`
 
         );
 
