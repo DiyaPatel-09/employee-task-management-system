@@ -51,22 +51,6 @@ project_id INT REFERENCES projects(id) ON DELETE CASCADE,
 employee_id INT REFERENCES users(id) ON DELETE CASCADE
 );
 
-CREATE TABLE notifications(
-id SERIAL PRIMARY KEY,
-user_id INT REFERENCES users(id) ON DELETE CASCADE,
-message TEXT NOT NULL,
-is_read BOOLEAN DEFAULT FALSE,
-created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE activity_logs(
-id SERIAL PRIMARY KEY,
-user_id INT REFERENCES users(id) ON DELETE CASCADE,
-action VARCHAR(255),
-project_id INT REFERENCES projects(id) ON DELETE SET NULL,
-task_id INT REFERENCES tasks(id) ON DELETE SET NULL,
-created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
 
 CREATE TABLE comments(
 id SERIAL PRIMARY KEY,
@@ -74,6 +58,19 @@ task_id INT REFERENCES tasks(id) ON DELETE CASCADE,
 user_id INT REFERENCES users(id) ON DELETE CASCADE,
 comment TEXT NOT NULL,
 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE leaves (
+id SERIAL PRIMARY KEY,
+employee_id INT REFERENCES users(id) ON DELETE CASCADE,
+leave_type VARCHAR(50) NOT NULL,
+from_date DATE NOT NULL,
+to_date DATE NOT NULL,
+no_of_days INT NOT NULL,
+reason TEXT NOT NULL,
+status VARCHAR(20) DEFAULT 'Pending',
+admin_remark TEXT,
+applied_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 ALTER TABLE tasks
@@ -104,6 +101,6 @@ SELECT * FROM tasks;
 SELECT * FROM task_updates;
 SELECT * FROM projects;
 SELECT * FROM project_members;
-SELECT * FROM notifications;
-SELECT * FROM activity_logs;
 SELECT * FROM comments;
+SELECT * FROM leaves;
+

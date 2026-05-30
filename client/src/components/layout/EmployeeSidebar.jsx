@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { LayoutDashboard, ClipboardList, BarChart3 } from "lucide-react";
+import { LayoutDashboard, ClipboardList, BarChart3,CalendarDays } from "lucide-react";
+
 function EmployeeSidebar({
 
     activeSection,
@@ -215,6 +216,46 @@ function EmployeeSidebar({
                     </span>
 
                 </button>
+
+        <button
+
+    className={
+
+        activeSection === "leaves"
+
+            ?
+
+            "sidebar-btn active-sidebar-btn"
+
+            :
+
+            "sidebar-btn"
+
+    }
+
+    onClick={() => {
+
+        if (setActiveSection) {
+
+            setActiveSection(
+                "leaves"
+            );
+
+        }
+
+    }}
+
+>
+
+    <CalendarDays size={20} />
+
+    <span>
+
+        Leaves
+
+    </span>
+
+</button>
 
 
 

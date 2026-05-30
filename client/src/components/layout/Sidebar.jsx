@@ -1,4 +1,4 @@
-import { LayoutDashboard, FolderKanban, Users, ClipboardList, BarChart3 } from "lucide-react";
+import { LayoutDashboard, FolderKanban, Users, ClipboardList, BarChart3, CalendarDays } from "lucide-react";
 
 
 function Sidebar({
@@ -203,7 +203,7 @@ function Sidebar({
 
                 className={
 
-                    activeSection === "progress"
+                    activeSection === "tasks"
 
                         ?
 
@@ -262,6 +262,37 @@ function Sidebar({
 
                 <BarChart3 size={20} />
                 <span>Reports</span>
+
+            </button>
+            <button
+
+                className={
+
+                    activeSection === "leaves"
+
+                        ?
+
+                        "active-sidebar-btn"
+
+                        :
+
+                        ""
+
+                }
+
+                onClick={() =>
+
+                    setActiveSection(
+
+                        "leaves"
+
+                    )
+
+                }
+
+            >
+                <CalendarDays size={20} />
+                <span>Leaves</span>
 
             </button>
 

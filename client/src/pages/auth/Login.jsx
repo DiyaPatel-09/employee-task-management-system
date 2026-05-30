@@ -45,13 +45,7 @@ function Login() {
 
       ) {
 
-        localStorage.setItem(
-
-          "section",
-
-          "dashboard"
-
-        );
+        localStorage.setItem("section","dashboard");
 
         navigate('/admin');
 

@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Sidebar from "../components/layout/Sidebar";
+import { formatDateTime } from "../utils/formatDate";
 
 function TaskDetailsPage() {
     const { id } = useParams();
@@ -204,11 +205,11 @@ function TaskDetailsPage() {
 
                                 </p>
 
-                                <h4>
+                               <h4>
 
-                                    {task?.due_date}
+    {formatDateTime(task?.due_date)}
 
-                                </h4>
+</h4>
 
                             </div>
 
@@ -326,7 +327,7 @@ function TaskDetailsPage() {
 
                                             {
 
-                                                new Date(
+                                                formatDateTime(
 
                                                     comment.created_at
 

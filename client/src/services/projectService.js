@@ -54,9 +54,11 @@ export const createProject = async (projectData, token) => {
 
 export const deleteProject = async (id, token) => {
 
-    const response = await axios.delete(
+    const response = await axios.put(
 
-        `http://localhost:5000/api/projects/${id}`,
+        `http://localhost:5000/api/projects/archive/${id}`,
+
+        {},
 
         {
 

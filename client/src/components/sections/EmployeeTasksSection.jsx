@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import {FaPlus,FaChartBar} from "react-icons/fa";
+import { formatDateTime } from "../../utils/formatDate";
 
 
 function EmployeeTasksSection() {
@@ -295,13 +296,13 @@ function EmployeeTasksSection() {
 
                                                 ?
 
-                                                new Date(
+                                                formatDateTime(
 
                                                     task.due_date
 
                                                 )
 
-                                                    .toLocaleDateString()
+                                                
 
                                                 :
 

@@ -4,6 +4,7 @@ import axios from "axios";
 import EmployeeSidebar from "../../components/layout/EmployeeSidebar";
 import "./EmployeeTaskDetailsPage.css";
 import { updateTask } from "../../services/taskService";
+import { formatDateTime } from "../../utils/formatDate";
 
 
 function EmployeeTaskDetailsPage() {
@@ -398,11 +399,11 @@ function EmployeeTaskDetailsPage() {
 
                                             task.due_date ?
 
-                                                new Date(
+                                                formatDateTime(
 
                                                     task.due_date
 
-                                                ).toLocaleDateString()
+                                                )
 
                                                 :
 
@@ -650,14 +651,12 @@ function EmployeeTaskDetailsPage() {
 
                                                     {
 
-                                                        new Date(
+                                                        formatDateTime(
 
                                                             comment.created_at
 
                                                         )
-
-                                                            .toLocaleString()
-
+                                            
                                                     }
 
                                                 </p>

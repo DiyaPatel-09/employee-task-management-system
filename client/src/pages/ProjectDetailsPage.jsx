@@ -138,21 +138,21 @@ function ProjectDetailsPage() {
 
                     <div className="project-actions">
 
-                   <button
+                        <button
 
-onClick={() => {
+                            onClick={() => {
 
-window.location.href =
+                                window.location.href =
 
-`/admin?section=assign&projectId=${project.id}`;
+                                    `/admin?section=assign&projectId=${project.id}`;
 
-}}
+                            }}
 
->
+                        >
 
-+ Add Task
+                            + Add Task
 
-</button>
+                        </button>
 
                         <button
 

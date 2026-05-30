@@ -2,8 +2,12 @@ import { useState, useEffect } from "react";
 import { createProject, getProjects, deleteProject, updateProject, addProjectMember, getProjectMembers } from "../../services/projectService";
 import { getEmployees } from "../../services/userService";
 import axios from "axios";
+import DeleteModal from "../DeleteModal";
+import { formatDate, formatDateTime } from "../../utils/formatDate";
 
-function ProjectsSection() {
+function ProjectsSection({
+    handleDeleteProject
+}) {
 
 
     const [projectName, setProjectName] = useState("");
@@ -21,6 +25,7 @@ function ProjectsSection() {
     const [members, setMembers] = useState([]);
     const [appliedSearch, setAppliedSearch] = useState("");
     const [appliedStatus, setAppliedStatus] = useState("");
+    const [showDeletePopup, setShowDeletePopup] = useState(false);
 
 
     useEffect(() => {
@@ -463,7 +468,7 @@ function ProjectsSection() {
                                         {
                                             project.start_date
                                                 ?
-                                                new Date(project.start_date).toLocaleDateString()
+                                                formatDate(project.start_date)
                                                 :
                                                 "-"
                                         }
@@ -473,7 +478,7 @@ function ProjectsSection() {
                                         {
                                             project.end_date
                                                 ?
-                                                new Date(project.end_date).toLocaleDateString()
+                                                formatDate(project.end_date)
                                                 :
                                                 "-"
                                         }
@@ -506,22 +511,18 @@ function ProjectsSection() {
                                             style={{
 
                                                 margin: "20px",
-
                                                 color: "#ef4444",
-
                                                 background: "none",
-
                                                 border: "none"
-
                                             }}
 
-                                            onClick={() =>
+                                            onClick={() => {
 
-                                                handleArchiveProject(
-                                                    project.id
-                                                )
+                                                setSelectedProject(project.id);
 
-                                            }
+                                                setShowDeletePopup(true);
+
+                                            }}
 
                                         >
 
@@ -543,7 +544,18 @@ function ProjectsSection() {
 
             </table>
 
+            <DeleteModal
+                isOpen={showDeletePopup}
+                onClose={() => setShowDeletePopup(false)}
+                onDelete={() => {
 
+                    handleDeleteProject(selectedProject);
+
+                    setShowDeletePopup(false);
+
+                }}
+                message="Are you sure you want to delete this project?"
+            />
 
 
         </div>

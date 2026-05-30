@@ -6,7 +6,10 @@ const {
   registerUser,
   loginUser,
   getAllUsers,
-  updateEmployee
+  updateEmployee,
+  blockEmployee,
+  checkUser,
+  deleteEmployee
 } = require('../controllers/userController');
 
 const router = express.Router();
@@ -42,6 +45,19 @@ router.post('/login', loginUser);
 // ============================
 router.put("/employees/:id",updateEmployee);
 
+// ============================
+// BLOCK USER
+// ============================
+router.put("/block-user/:id", blockEmployee);
 
+// ============================
+// CHECK USER
+// ============================
+router.get("/check-user", authMiddleware, checkUser);
+
+// ============================
+// DELETE USER
+// ============================
+router.put("/delete/:id",authMiddleware,deleteEmployee);
 
 module.exports = router;

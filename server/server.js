@@ -6,6 +6,8 @@ const pool = require('./config/db');
 const userRoutes = require('./routes/userRoutes');
 const taskRoutes = require('./routes/taskRoutes');
 const projectRoutes=require("./routes/projectRoutes");
+const leaveRoutes = require("./routes/leaveRoutes");
+
 
 const app = express();
 
@@ -15,7 +17,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/tasks', taskRoutes);
 app.use("/api/projects",projectRoutes);
 app.use("/uploads",express.static("uploads"));
-
+app.use("/api/leaves", leaveRoutes);
 
 pool.connect()
   .then(() => {

@@ -10,36 +10,21 @@ import TasksSection from "../../components/sections/TasksSection";
 import AssignTaskSection from "../../components/sections/AssignTaskSection";
 import CreateEmployeeSection from "../../components/sections/CreateEmployeeSection";
 import { getTasks, assignTask, deleteTask, updateTask, archiveTask, getProjectReport } from "../../services/taskService";
-import { getEmployees, createEmployee, updateEmployee } from "../../services/userService";
+import { getEmployees, createEmployee, updateEmployee, deleteEmployee } from "../../services/userService";
 import ReportSection from "../../components/sections/ReportSection";
 import ProjectsSection from "../../components/sections/ProjectsSection";
-import { getProjects } from "../../services/projectService";
+import { getProjects,deleteProject,updateProject,createProject } from "../../services/projectService";
 import ProjectDetailsPage from "../ProjectDetailsPage";
 import DevelopersSection from '../../components/sections/DevelopersSection';
 import AdminProfileSection from '../../components/sections/ProfileSection';
+import LeaveManagementSection from '../../components/sections/LeaveManagementSection';
 
 
 
 function AdminDashboard() {
-    const params =
-
-        new URLSearchParams(
-
-            window.location.search
-
-        );
-
-    const prefilledSection =
-
-        params.get(
-            "section"
-        );
-
-    const prefilledProjectId =
-
-        params.get(
-            "projectId"
-        );
+    const params = new URLSearchParams(window.location.search);
+    const prefilledSection = params.get("section");
+    const prefilledProjectId = params.get("projectId");
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [employeeId, setEmployeeId] = useState("");
@@ -77,10 +62,7 @@ function AdminDashboard() {
     const [developerReports, setDeveloperReports] = useState([]);
 
 
-
-
     const [searchParams] = useSearchParams();
-
 
     const navigate = useNavigate();
 
@@ -197,6 +179,7 @@ function AdminDashboard() {
     }, []);
 
 
+
     const handleAssignTask = async (e) => {
 
         e.preventDefault();
@@ -285,11 +268,13 @@ function AdminDashboard() {
 
     };
 
+
     const fetchTasks = async () => {
 
         try {
 
             const token = localStorage.getItem("token");
+            if (!token) return;
             const data = await getTasks(token);
             setTasks(data);
 
@@ -303,6 +288,7 @@ function AdminDashboard() {
 
     };
 
+
     const handleCreateEmployee = async (e) => {
 
         e.preventDefault();
@@ -310,7 +296,7 @@ function AdminDashboard() {
         try {
 
             const token = localStorage.getItem("token");
-
+if (!token) return;
             if (isEditing) {
 
                 await updateEmployee(editingEmployeeId, { name, email, role }, token);
@@ -358,11 +344,13 @@ function AdminDashboard() {
     };
 
 
+
     const fetchEmployees = async () => {
 
         try {
 
             const token = localStorage.getItem("token");
+            if (!token) return;
             const data = await getEmployees(token);
             setEmployees(data);
 
@@ -375,6 +363,7 @@ function AdminDashboard() {
         }
 
     };
+
 
 
     const fetchReports = async () => {
@@ -390,7 +379,7 @@ function AdminDashboard() {
                     "token"
 
                 );
-
+if (!token) return;
             const response =
 
                 await axios.get(
@@ -435,11 +424,14 @@ function AdminDashboard() {
 
     };
 
+
+
     const fetchProjects = async () => {
 
         try {
 
             const token = localStorage.getItem("token");
+            if (!token) return;
             const data = await getProjects(token);
             setProjects(data);
 
@@ -453,6 +445,8 @@ function AdminDashboard() {
 
     };
 
+
+
     const handleLogout = () => {
 
         localStorage.removeItem("token");
@@ -461,11 +455,14 @@ function AdminDashboard() {
 
     };
 
+
+
     const handleViewProject = (project) => {
 
         setSelectedProject(project);
 
     };
+
 
     const handleEditEmployee = (employee) => {
 
@@ -479,21 +476,83 @@ function AdminDashboard() {
     const handleArchiveTask = async (id) => {
 
         const token = localStorage.getItem("token");
+        if (!token) return;
         await archiveTask(id, token);
         setTasks(prev => prev.filter(task => task.id !== id));
 
     }
+const handleDeleteProject = async (id) => {
 
+    try {
+
+        const token = localStorage.getItem("token");
+
+        await deleteProject(id, token);
+
+        await fetchProjects();
+
+    }
+
+    catch (err) {
+
+        console.log(err);
+
+    }
+
+};
 
     const fetchDeveloperReports =
 
         async () => {
             const token = localStorage.getItem("token");
+            if (!token) return;
             const response = await axios.get("http://localhost:5000/api/tasks/developer-report", { headers: { Authorization: `Bearer ${token}` } });
 
             setDeveloperReports(response.data);
 
         };
+
+    const handleDeleteEmployee = async (id) => {
+
+        try {
+
+            
+            const token = localStorage.getItem("token");
+            if (!token) return;
+            await deleteEmployee(id, token);
+            setEmployees(prev =>prev.filter(emp => emp.id !== id)
+
+            );
+
+        }
+
+        catch (err) {
+
+            console.log(err);
+
+        }
+
+    };
+
+    const handleBlockEmployee = async (id) => {
+
+        try {
+
+            await axios.put(`http://localhost:5000/api/users/block-user/${id}`);
+
+
+            await fetchEmployees();
+
+        }
+
+        catch (err) {
+
+            console.log(err);
+
+        }
+
+    };
+
 
 
 
@@ -535,6 +594,8 @@ function AdminDashboard() {
                                 setSearch={setSearch}
                                 setActiveSection={setActiveSection}
                                 handleEditEmployee={handleEditEmployee}
+                                handleDeleteEmployee={handleDeleteEmployee}
+                                handleBlockEmployee={handleBlockEmployee}
                             />
                         )
                     }
@@ -614,6 +675,12 @@ function AdminDashboard() {
                         )
                     }
                     {
+    activeSection === "leaves"
+    &&
+    <LeaveManagementSection />
+}
+                    
+                    {
 
                         activeSection === "profile"
 
@@ -663,7 +730,9 @@ function AdminDashboard() {
                 {
                     activeSection === "projects"
                     &&
-                    <ProjectsSection />
+                    <ProjectsSection 
+                    handleDeleteProject={handleDeleteProject}
+                    />
                 }
             </div >
 

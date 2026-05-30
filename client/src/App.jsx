@@ -17,6 +17,9 @@ import CreateEmployeeTaskPage from "./pages/employee/CreateEmployeeTaskPage";
 import EmployeeTaskDetailsPage from "./pages/employee/EmployeeTaskDetailsPage";
 import EmployeeDashboard from "./pages/employee/EmployeeDashboard";
 import EmployeeProfileSection from "./components/sections/EmployeeProfileSection";
+import BlockedPage from './pages/BlockedPage';
+import CreateLeaveRequestPage from "./pages/employee/CreateLeaveRequestPage";
+
 
 function App() {
 
@@ -91,10 +94,20 @@ function App() {
           element={<EmployeeDashboard />}
         />
 
-      <Route
-        path="/profile"
-        element={<EmployeeProfileSection />}
-      />
+        <Route
+          path="/profile"
+          element={<EmployeeProfileSection />}
+        />
+
+        <Route
+          path="/blocked"
+          element={<BlockedPage />}
+        />
+        
+        <Route
+          path="/create-leave-request"
+          element={<CreateLeaveRequestPage />}
+        />
 
 
       </Routes>

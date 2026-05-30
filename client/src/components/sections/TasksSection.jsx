@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import DeleteModal from "../DeleteModal";
 
 function TasksSection({
     tasks,
@@ -19,6 +19,8 @@ function TasksSection({
     const [search, setSearch] = useState("");
     const [projectFilter, setProjectFilter] = useState("");
     const [statusFilter, setStatusFilter] = useState("");
+    const [showDeletePopup, setShowDeletePopup] = useState(false);
+    const [selectedTask, setSelectedTask] = useState(null);
 
     const navigate = useNavigate();
 
@@ -89,7 +91,7 @@ function TasksSection({
 
                     <div>
 
-                        <label>Search</label>
+                        <label>Title</label>
 
                         <input
                             value={search}
@@ -174,11 +176,7 @@ function TasksSection({
 
                     </div>
 
-                    <button className="apply-btn">
-
-                        Apply
-
-                    </button>
+                    
 
                 </div>
 
@@ -296,7 +294,13 @@ function TasksSection({
 
                                         className="action-delete"
 
-                                        onClick={() => handleArchiveTask(task.id)}
+                                        onClick={() => {
+
+                                            setSelectedTask(task.id);
+
+                                            setShowDeletePopup(true);
+
+                                        }}
 
                                     >
 
@@ -304,9 +308,12 @@ function TasksSection({
 
                                     </span>
 
+
+
                                 </td>
 
                             </tr>
+
 
                         ))
 
@@ -315,6 +322,18 @@ function TasksSection({
                 </tbody>
 
             </table>
+            <DeleteModal
+                isOpen={showDeletePopup}
+                onClose={() => setShowDeletePopup(false)}
+                onDelete={() => {
+
+                    handleArchiveTask(selectedTask);
+
+                    setShowDeletePopup(false);
+
+                }}
+                message="Are you sure you want to delete this task?"
+            />
 
         </div>
 

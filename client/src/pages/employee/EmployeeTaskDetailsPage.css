@@ -6,7 +6,7 @@ background:#edf2f9;
 
 .employee-main{
 flex:1;
-padding:24px;
+padding:32px;
 }
 
 .employee-task-details{
@@ -27,7 +27,7 @@ margin-bottom:6px;
 }
 
 .task-header h1{
-font-size:24px;
+font-size:32px;
 margin-bottom:6px;
 }
 
@@ -36,16 +36,16 @@ color:#667085;
 display:flex;
 gap:10px;
 align-items:center;
-font-size: 14px;
+font-size: 15px;
 }
 
 .back-btn{
-padding:10px 16px;
+padding:12px 20px;
 border:none;
 border-radius:10px;
 background:white;
 cursor:pointer;
-font-size: 14px;
+font-size: 15px;
 margin-top: 40px;
 }
 
@@ -61,8 +61,8 @@ margin-bottom:16px;
 .progress-card,
 .comments-card{
 background:white;
-padding:18px;
-border-radius:18px;
+padding:24px;
+border-radius:16px;
 }
 .details-card h4,
 .flow-card h4{
@@ -82,7 +82,7 @@ margin-bottom:16px;
 }
 .progress-card h2,
 .comments-card h2{
-font-size:18px;
+font-size:20px;
 margin-bottom:6px;
 }
 
@@ -98,20 +98,20 @@ align-items:end;
 .progress-row select,
 .comments-card textarea{
 width:100%;
-padding:10px;
+padding:12px 16px;
 border:1px solid #ddd;
-border-radius:12px;
+border-radius:10px;
 box-sizing:border-box;
-font-size: 14px;
+font-size: 15px;
 }
 
 
 .progress-row button,
 .comments-card button{
-padding:10px 16px;
-font-size: 14px;
+padding:12px 20px;
+font-size: 15px;
 border:none;
-border-radius:12px;
+border-radius:10px;
 background:#5b55f6;
 color:white;
 cursor:pointer;
@@ -131,7 +131,7 @@ display:flex;
 align-items:center;
 gap:8px;
 margin-top:6px;
-font-size:14px;
+font-size:15px;
 color:#667085;
 }
 
@@ -164,15 +164,17 @@ margin-top:12px;
 
 .comment-actions button{
 margin-top:0;
-padding:10px 22px;
+padding:12px 20px;
+border-radius:10px;
+font-size:15px;
 }
 
 .comment-list{
 width:96%;
 margin-top:12px;
 background:#eef3ff;
-padding:14px;
-border-radius:12px;
+padding:16px;
+border-radius:10px;
 max-height:250px;
 overflow-y:auto;
 }

@@ -1,13 +1,23 @@
+import { useState } from "react";
+import DeleteModal from "../DeleteModal";
+
+
+
 function DevelopersSection({
 
     employees,
     search,
     setSearch,
     setActiveSection,
-    handleEditEmployee
+    handleEditEmployee,
+    handleDeleteEmployee,
+    handleBlockEmployee
 
 }) {
-    console.log(employees);
+    const [showDeletePopup, setShowDeletePopup] = useState(false);
+    const [selectedDeveloper, setSelectedDeveloper] = useState(null);
+
+
     return (
 
         <div>
@@ -106,10 +116,10 @@ function DevelopersSection({
 
                     {
                         employees.filter(emp => emp.name?.toLowerCase().includes(search.toLowerCase())
-                                    ||
-                                    emp.email?.toLowerCase().includes( search .toLowerCase())
+                            ||
+                            emp.email?.toLowerCase().includes(search.toLowerCase())
 
-                            )
+                        )
 
                             .map(emp => (
 
@@ -117,8 +127,41 @@ function DevelopersSection({
                                     <td>{emp.name} </td>
                                     <td>{emp.email}</td>
                                     <td>
-                                        <span className="action-edit" onClick={() => handleEditEmployee(emp)}> Edit </span>
-                                        <span className="action-delete">Delete</span>
+
+                                        <span
+                                            className="action-edit"
+                                            onClick={() => handleEditEmployee(emp)}
+                                        >
+                                            Edit
+                                        </span>
+
+                                        <span
+                                            className="action-delete"
+                                            onClick={() => {
+
+                                                setSelectedDeveloper(emp.id);
+
+                                                setShowDeletePopup(true);
+
+                                            }}
+                                        >
+                                            Delete
+                                        </span>
+
+                                        <span
+                                            className="action-block"
+
+                                            onClick={() => handleBlockEmployee(emp.id)}
+                                        >
+                                            {
+                                                emp.is_blocked
+                                                    ?
+                                                    "  Unblock"
+                                                    :
+                                                    "  Block"
+                                            }
+                                        </span>
+
                                     </td>
                                 </tr>
 
@@ -127,6 +170,18 @@ function DevelopersSection({
 
                 </tbody>
             </table>
+            <DeleteModal
+                isOpen={showDeletePopup}
+                onClose={() => setShowDeletePopup(false)}
+                onDelete={() => {
+
+                    handleDeleteEmployee(selectedDeveloper);
+
+                    setShowDeletePopup(false);
+
+                }}
+                message="Are you sure you want to delete this developer?"
+            />
         </div>
 
     );

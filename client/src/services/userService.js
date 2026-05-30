@@ -84,3 +84,28 @@ export const updateEmployee = async (id, data, token) => {
     return response.data;
 
 };
+
+
+export const deleteEmployee = async (id, token) => {
+
+    const res = await axios.put(
+
+        `http://localhost:5000/api/users/delete/${id}`,
+
+        {},
+
+        {
+
+            headers: {
+
+                Authorization: `Bearer ${token}`
+
+            }
+
+        }
+
+    );
+
+    return res.data;
+
+};

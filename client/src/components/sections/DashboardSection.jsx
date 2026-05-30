@@ -24,7 +24,7 @@ function DashboardSection({
                 localStorage.getItem(
                     "token"
                 );
-
+if (!token) return;
             const projectData =
                 await getProjects(
                     token

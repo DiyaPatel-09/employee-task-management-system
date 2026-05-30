@@ -81,6 +81,15 @@ const loginUser = async (req, res) => {
     
 
     const user = result.rows[0];
+    if(user.is_blocked){
+
+    return res.status(403).json({
+
+        message: "Your account has been blocked"
+
+    });
+
+}
 
     const isMatch = await bcrypt.compare(
       password,
@@ -149,7 +158,7 @@ const getAllUsers = async (req, res) => {
 
     const result = await pool.query(
 
-      `SELECT id,name,email
+      `SELECT id,name,email,is_blocked
              FROM users
              WHERE role='employee'`
 
@@ -216,9 +225,136 @@ const updateEmployee = async (req, res) => {
 
 };
 
+
+const blockEmployee = async (req, res) => {
+
+    try {
+
+        const { id } = req.params;
+
+        await pool.query(
+
+            `
+            UPDATE users
+            SET is_blocked = NOT is_blocked
+            WHERE id=$1
+            `,
+            [id]
+
+        );
+
+        res.json({
+
+            success: true
+
+        });
+
+    }
+
+    catch (err) {
+
+        res.status(500).json({
+
+            error: err.message
+
+        });
+
+    }
+
+};
+
+
+const checkUser = async (req, res) => {
+
+    try {
+
+        const result = await pool.query(
+
+            `
+            SELECT * FROM users
+            WHERE id=$1
+            `,
+            [req.user.id]
+
+        );
+
+        const user = result.rows[0];
+
+        if(user.is_blocked){
+
+            return res.status(403).json({
+
+                message: "Blocked"
+
+            });
+
+        }
+
+        res.json({
+
+            success: true
+
+        });
+
+    }
+
+    catch(err){
+
+        res.status(500).json({
+
+            error: err.message
+
+        });
+
+    }
+
+};
+
+
+const deleteEmployee = async (req, res) => {
+
+    try {
+
+        const { id } = req.params;
+
+        await pool.query(
+
+            `
+            UPDATE users
+            SET is_deleted = TRUE
+            WHERE id=$1
+            `,
+            [id]
+
+        );
+
+        res.json({
+
+            success: true
+
+        });
+
+    }
+
+    catch(err){
+
+        res.status(500).json({
+
+            error: err.message
+
+        });
+
+    }
+
+};
+
+
 module.exports = {
   registerUser,
   loginUser,
   getAllUsers,
-  updateEmployee
+  updateEmployee,
+  blockEmployee,
+  checkUser,
+  deleteEmployee
 };

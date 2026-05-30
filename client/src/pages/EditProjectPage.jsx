@@ -70,11 +70,7 @@ function EditProjectPage() {
                         ?.split("T")[0]
 
                 );
-                setDueDate(
-task.due_date
-?.split("T")[0]
-);
-
+              
             }
 
         }
@@ -93,7 +89,7 @@ task.due_date
                 localStorage.getItem(
                     "token"
                 );
-
+            if (!token) return;
             await fetch(
 
                 `http://localhost:5000/api/projects/${editId}`,
@@ -131,7 +127,7 @@ task.due_date
                             end_date:
                                 endDate
 
-                        })
+                           })
 
                 }
 

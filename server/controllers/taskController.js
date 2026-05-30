@@ -415,33 +415,33 @@ const updateTask = async (req, res) => {
 
   try {
 
-const{
+    const {
 
-title,
+      title,
 
-description,
+      description,
 
-employee_id,
+      employee_id,
 
-project_id,
+      project_id,
 
-priority,
+      priority,
 
-status,
+      status,
 
-estimated_hours,
+      estimated_hours,
 
-actual_hours,
+      actual_hours,
 
-due_date,
+      due_date,
 
-attachment
+      attachment
 
-}
+    }
 
-=
+      =
 
-req.body;
+      req.body;
 
     const result = await pool.query(
 
@@ -475,29 +475,29 @@ RETURNING *`,
 
       [
 
-title,
+        title,
 
-description,
+        description,
 
-employee_id,
+        employee_id,
 
-project_id,
+        project_id,
 
-priority,
+        priority,
 
-status,
+        status,
 
-estimated_hours,
+        estimated_hours,
 
-actual_hours,
+        actual_hours,
 
-due_date,
+        due_date,
 
-attachment,
+        attachment,
 
-req.params.id
+        req.params.id
 
-]
+      ]
 
     );
 
@@ -975,23 +975,23 @@ const archiveAccount =
 
 
 
-  const updateProfile=
+const updateProfile =
 
-async(req,res)=>{
+  async (req, res) => {
 
-try{
+    try {
 
-const{
+      const {
 
-name,
+        name,
 
-email
+        email
 
-}=req.body;
+      } = req.body;
 
-await pool.query(
+      await pool.query(
 
-`UPDATE users
+        `UPDATE users
 
 SET
 
@@ -1001,34 +1001,34 @@ email=$2
 
 WHERE id=$3`,
 
-[
+        [
 
-name,
+          name,
 
-email,
+          email,
 
-req.user.id
+          req.user.id
 
-]
+        ]
 
-);
+      );
 
-res.json({
+      res.json({
 
-message:
-"Profile updated"
+        message:
+          "Profile updated"
 
-});
+      });
 
-}
+    }
 
-catch(err){
+    catch (err) {
 
-console.log(err);
+      console.log(err);
 
-}
+    }
 
-};
+  };
 
 module.exports = {
   assignTask,
